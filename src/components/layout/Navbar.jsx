@@ -1,29 +1,34 @@
-const Navbar = ({ cartCount = 3, activeLink = 'Trang chủ' }) => {
+import { NavLink, Link } from 'react-router-dom'
+
+const Navbar = ({ cartCount = 3 }) => {
   const navLinks = [
-    { label: 'Trang chủ', href: '#' },
-    { label: 'Điện thoại', href: '#' },
-    { label: 'Laptop', href: '#' },
-    { label: 'Phụ kiện', href: '#' },
-    { label: 'Liên hệ', href: '#' },
+    { label: 'Trang chủ', to: '/' },
+    { label: 'Điện thoại', to: '/phone' },
+    { label: 'Laptop', to: '/laptop' },
+    { label: 'Phụ kiện', to: '/accessory' },
+    { label: 'Liên hệ', to: '/lienhe' },
   ]
 
   return (
     <header className="header">
       <div className="header-container">
-        <a href="#" className="logo">
+        <Link to="/" className="logo">
           <span className="logo-icon">⚡</span>
           <span className="logo-text">TechStore</span>
-        </a>
+        </Link>
 
         <nav className="nav">
           {navLinks.map((link) => (
-            <a
+            <NavLink
               key={link.label}
-              href={link.href}
-              className={`nav-link${link.label === activeLink ? ' active' : ''}`}
+              to={link.to}
+              className={({ isActive }) =>
+                `nav-link${isActive ? ' active' : ''}`
+              }
+              end={link.to === '/'}
             >
               {link.label}
-            </a>
+            </NavLink>
           ))}
         </nav>
 

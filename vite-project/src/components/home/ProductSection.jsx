@@ -4,6 +4,8 @@ const ProductSection = ({
   products,
   title = 'Sản phẩm nổi bật',
   subtitle = 'Những sản phẩm được yêu thích và bán chạy nhất',
+  onEdit,
+  onDelete,
 }) => {
   return (
     <section className="products" id="products">
@@ -14,7 +16,12 @@ const ProductSection = ({
         </div>
         <div className="products-grid">
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard
+              key={product.id}
+              product={product}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />
           ))}
         </div>
       </div>

@@ -1,4 +1,4 @@
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onEdit, onDelete }) => {
   const { name, price, oldPrice, img, badge } = product
 
   return (
@@ -27,6 +27,28 @@ const ProductCard = ({ product }) => {
           </svg>
           Thêm vào giỏ
         </button>
+        {(onEdit || onDelete) && (
+          <div className="product-crud-actions">
+            {onEdit && (
+              <button
+                className="crud-btn crud-btn-edit"
+                onClick={() => onEdit(product)}
+                title="Sửa sản phẩm"
+              >
+                Sửa
+              </button>
+            )}
+            {onDelete && (
+              <button
+                className="crud-btn crud-btn-delete"
+                onClick={() => onDelete(product.id)}
+                title="Xóa sản phẩm"
+              >
+                Xóa
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
